@@ -1,0 +1,429 @@
+{
+  "version": 1,
+  "skills": [
+    {
+      "name": "academic-research",
+      "title": "Academic Research",
+      "description": "Find, read and summarise peer-reviewed papers and build a short cited literature review. Use when the user asks what the research says, wants papers on a topic, needs a literature review, or asks to evaluate a study's methods.",
+      "version": "1.2.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "research",
+      "tags": [
+        "research",
+        "papers",
+        "literature-review",
+        "citations"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "web-access"
+      ],
+      "icon": "book",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/academic-research/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "code-documentation",
+      "title": "Code Documentation",
+      "description": "Write or update docstrings, READMEs and API docs that match what the code actually does, verified by reading the implementation. Use when the user asks to document code, write a README, explain a module, or fix out-of-date docs.",
+      "version": "1.1.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "development",
+      "tags": [
+        "documentation",
+        "development",
+        "readme",
+        "docstrings"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "filesystem"
+      ],
+      "icon": "doc",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/code-documentation/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "code-review",
+      "title": "Code Review",
+      "description": "Review a diff, branch or pull request for correctness bugs, security issues and maintainability problems, and report prioritised findings with file and line references. Use when the user asks to review code, check a PR, look for bugs before merging, or asks \"what could break\".",
+      "version": "1.1.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "development",
+      "tags": [
+        "code-review",
+        "development",
+        "git",
+        "quality"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "filesystem",
+        "git"
+      ],
+      "icon": "code",
+      "featured": true,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/code-review/SKILL.md",
+      "files": [
+        "SKILL.md",
+        "examples/review-output.md"
+      ]
+    },
+    {
+      "name": "competitive-analysis",
+      "title": "Competitive Analysis",
+      "description": "Compare specific competitors on features, pricing, positioning, strengths and weaknesses using their public materials, and turn that into a comparison matrix and positioning gaps. Use when the user names competitors, asks who competes with a product, or wants to know how to differentiate.",
+      "version": "1.0.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "research",
+      "tags": [
+        "research",
+        "competitors",
+        "strategy",
+        "positioning"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "web-access"
+      ],
+      "dependencies": [
+        "web-research"
+      ],
+      "icon": "users",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/competitive-analysis/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "data-analysis",
+      "title": "Data Analysis",
+      "description": "Explore, clean and analyse tabular data (CSV, Excel, JSON) with code, then report insights with charts and the exact steps taken. Use when the user shares a dataset or asks what the data shows, wants trends, comparisons, anomalies, or a chart.",
+      "version": "1.2.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "data",
+      "tags": [
+        "data",
+        "analytics",
+        "python",
+        "visualization"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "code-execution",
+        "filesystem"
+      ],
+      "compatibility": "Needs Python 3.10+ with pandas; matplotlib for charts.",
+      "icon": "chart",
+      "featured": true,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/data-analysis/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "email-assistant",
+      "title": "Email Assistant",
+      "description": "Triage an inbox, summarise threads and draft replies in the user's voice - without sending anything until the user approves. Use when the user asks to go through their email, summarise a thread, draft or rewrite a reply, or find messages that need action.",
+      "version": "1.0.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "productivity",
+      "tags": [
+        "email",
+        "productivity",
+        "drafting",
+        "triage"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "email-access"
+      ],
+      "icon": "mail",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/email-assistant/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "github-integration",
+      "title": "GitHub Integration",
+      "description": "Work with GitHub through the gh CLI - read and triage issues, summarise pull requests, check CI status, and draft issues or PR descriptions. Use when the user mentions GitHub issues, PRs, CI checks, releases, or asks for a repository activity summary.",
+      "version": "1.0.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "devops",
+      "tags": [
+        "github",
+        "devops",
+        "issues",
+        "pull-requests"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "shell",
+        "github-cli"
+      ],
+      "compatibility": "Requires the GitHub CLI (gh) installed and authenticated with gh auth login.",
+      "icon": "github",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/github-integration/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "market-research",
+      "title": "Market Research",
+      "description": "Size and describe a market - segments, customers, trends, pricing norms and demand signals - from public sources, with every number sourced. Use when the user asks how big a market is, who the customers are, whether there is demand, or wants a market overview for a product idea.",
+      "version": "1.0.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "research",
+      "tags": [
+        "research",
+        "market",
+        "business",
+        "strategy"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "web-access"
+      ],
+      "dependencies": [
+        "web-research"
+      ],
+      "icon": "chart",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/market-research/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "pdf-analysis",
+      "title": "PDF Analysis",
+      "description": "Extract text, tables and specific fields from PDF documents and answer questions about them with page references. Use when the user shares a PDF or asks to summarise a report, pull numbers from an invoice or statement, extract tables, or compare PDFs.",
+      "version": "1.0.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "documents",
+      "tags": [
+        "pdf",
+        "documents",
+        "extraction",
+        "tables"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "filesystem",
+        "code-execution"
+      ],
+      "compatibility": "Works best with Python 3.10+ and pdfplumber or pypdf available; falls back to the agent's built-in PDF reading.",
+      "icon": "doc",
+      "featured": true,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/pdf-analysis/SKILL.md",
+      "files": [
+        "SKILL.md",
+        "examples/invoice-fields.md"
+      ]
+    },
+    {
+      "name": "sql-analysis",
+      "title": "SQL Analysis",
+      "description": "Explore a database schema, write safe read-only SQL to answer business questions, and explain the results and the query. Use when the user asks a question about data that lives in a SQL database, wants a query written or debugged, or needs a metric defined in SQL.",
+      "version": "1.0.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "data",
+      "tags": [
+        "sql",
+        "data",
+        "database",
+        "analytics"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "database"
+      ],
+      "icon": "db",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/sql-analysis/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "web-research",
+      "title": "Web Research",
+      "description": "Research a question across several independent, reliable web sources and return a sourced answer with confidence notes. Use when the user asks to look into a topic, verify a claim, compare viewpoints, or needs citations - not for a single quick fact (use web-search for that).",
+      "version": "1.0.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "research",
+      "tags": [
+        "research",
+        "web",
+        "search",
+        "citations"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "web-access"
+      ],
+      "icon": "search",
+      "featured": true,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/web-research/SKILL.md",
+      "files": [
+        "SKILL.md",
+        "examples/sample-answer.md"
+      ]
+    },
+    {
+      "name": "web-search",
+      "title": "Web Search",
+      "description": "Answer a single factual question quickly with one or two web lookups and a source link. Use for quick facts, current values, definitions, dates, or finding an official page - escalate to web-research when the answer is disputed or needs synthesis.",
+      "version": "1.0.0",
+      "author": "Velonx",
+      "license": "MIT",
+      "category": "research",
+      "tags": [
+        "search",
+        "web",
+        "lookup",
+        "facts"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "web-access"
+      ],
+      "icon": "search",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/web-search/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    }
+  ]
+}
