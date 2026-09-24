@@ -42,7 +42,7 @@ The [Agent Skills](https://agentskills.io) format that Claude and other agents l
 ## B. Repository structure
 
 ```text
-agent-skills/                         skills-web/  (Phase 4, planned)
+agent-skills/                         skills-web/  (see its README for the current layout)
 ├── README.md                         ├── app/
 ├── ARCHITECTURE.md                   │   ├── page.tsx                 home
 ├── SPECIFICATION.md                  │   ├── skills/page.tsx          list + filters
@@ -126,8 +126,8 @@ Full contributor instructions: [CONTRIBUTING.md](CONTRIBUTING.md).
 | 1 | Repo, docs, spec, schema, 12 sample skills | ✅ |
 | 2 | Validation (+ tests, PR workflow) | ✅ |
 | 3 | Registry generation (+ `main` workflow, dispatch hook) | ✅ |
-| 4 | `skills-web`: Next.js + TypeScript + Tailwind, design system, home | next |
-| 5 | Skills list, detail pages, categories, search | |
+| 4 | `skills-web`: Next.js + TypeScript + Tailwind, design system, home | ✅ |
+| 5 | Skills list, detail pages, categories, search | next |
 | 6 | Connect website to registry | |
 | 7 | GitHub links: "View on GitHub", "Edit this skill" | |
 | 8 | Contribution UX: submit page → GitHub new-file/PR flow | |
