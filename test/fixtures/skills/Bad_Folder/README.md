@@ -1,0 +1,1 @@
+Fixture: invalid folder name.

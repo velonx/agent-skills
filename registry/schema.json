@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://skills.velonx.com/schema/skill-frontmatter.json",
+  "title": "Velonx skill frontmatter",
+  "description": "YAML frontmatter of skills/<name>/SKILL.md. Top-level keys follow the Agent Skills standard so every skill loads in Claude and other agents unchanged; Velonx registry fields live under `metadata`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "description", "license", "metadata"],
+  "properties": {
+    "name": {
+      "description": "Unique id. Must equal the folder name.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "description": {
+      "description": "What the skill does AND when an agent should use it.",
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 1024,
+      "pattern": "^[^<>]*$"
+    },
+    "license": {
+      "description": "SPDX id from the allowlist.",
+      "enum": ["MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "MPL-2.0", "CC-BY-4.0", "CC0-1.0", "Unlicense"]
+    },
+    "compatibility": {
+      "description": "Free-text environment notes, e.g. 'Needs Python 3.10+ and network access'.",
+      "type": "string",
+      "maxLength": 500
+    },
+    "allowed-tools": {
+      "description": "Agent-specific tool allowlist, passed through untouched.",
+      "anyOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "version", "author", "category", "tags", "platforms", "requirements"],
+      "properties": {
+        "title": { "type": "string", "minLength": 2, "maxLength": 60 },
+        "version": {
+          "description": "Semantic version MAJOR.MINOR.PATCH. Quote it if YAML would read it as a number.",
+          "type": "string",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+        },
+        "author": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "category": { "description": "An id from registry/categories.json.", "type": "string" },
+        "tags": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "maxLength": 30 }
+        },
+        "platforms": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["generic", "claude", "openai", "gemini", "cursor"] }
+        },
+        "requirements": {
+          "description": "Capabilities the agent needs. Empty list means none.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["web-access", "filesystem", "code-execution", "shell", "git", "github-cli", "database", "email-access", "browser"] }
+        },
+        "repository": { "type": "string", "pattern": "^https://" },
+        "homepage": { "type": "string", "pattern": "^https://" },
+        "documentation": { "type": "string", "pattern": "^https://" },
+        "icon": { "description": "Icon name used by skills.velonx.com.", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "featured": { "type": "boolean" },
+        "deprecated": { "description": "true, or a short reason / replacement.", "type": ["boolean", "string"] },
+        "createdAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "updatedAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "dependencies": {
+          "description": "Other skills in this registry that this one builds on.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" }
+        }
+      }
+    }
+  }
+}

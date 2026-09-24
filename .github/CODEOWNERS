@@ -1,0 +1,5 @@
+# Team must exist in the velonx org: github.com/orgs/velonx/teams
+*               @velonx/maintainers
+/registry/      @velonx/maintainers
+/scripts/       @velonx/maintainers
+/.github/       @velonx/maintainers

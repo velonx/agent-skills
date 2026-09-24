@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "categories": [
+    { "id": "development", "title": "Development", "icon": "code", "description": "Review, refactor, document and test code." },
+    { "id": "research", "title": "Research", "icon": "search", "description": "Find, read, compare and cite sources." },
+    { "id": "data", "title": "Data & Analytics", "icon": "chart", "description": "Query, clean, analyse and chart data." },
+    { "id": "writing", "title": "Writing", "icon": "pen", "description": "Draft, edit and restructure text in a consistent voice." },
+    { "id": "devops", "title": "DevOps", "icon": "cloud", "description": "CI, repositories, containers and deployments." },
+    { "id": "productivity", "title": "Productivity", "icon": "bolt", "description": "Email, meetings and everyday chores." },
+    { "id": "ai", "title": "AI & Agents", "icon": "spark", "description": "Planning, memory and evaluation for agents themselves." },
+    { "id": "documents", "title": "Documents", "icon": "doc", "description": "PDFs, office files and other document formats." },
+    { "id": "other", "title": "Other", "icon": "dots", "description": "Everything that does not fit a category yet." }
+  ]
+}

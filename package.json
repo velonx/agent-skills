@@ -1,0 +1,20 @@
+{
+  "name": "@velonx/agent-skills",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-source skills for AI agents. Source of truth for skills.velonx.com.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "registry": "node scripts/build-registry.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "yaml": "^2.9.1"
+  }
+}

@@ -1,0 +1,43 @@
+name: Validate skills
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - "registry/**"
+      - "scripts/**"
+      - "test/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/validate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # the PR merge commit and its base, for the hand-edit check
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validate skills
+        run: npm run validate
+
+      - name: Run tests
+        run: npm test
+
+      - name: registry/skills.json is not hand-edited
+        run: |
+          if git diff --name-only HEAD^1 HEAD | grep -qx 'registry/skills.json'; then
+            echo "::error file=registry/skills.json::registry/skills.json is generated after merge. Revert your changes to it."
+            exit 1
+          fi

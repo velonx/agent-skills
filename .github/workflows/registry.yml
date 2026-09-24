@@ -1,0 +1,59 @@
+name: Update registry
+
+on:
+  push:
+    branches: [main]
+    # registry/skills.json is deliberately not listed, so the bot's commit can't retrigger this.
+    paths:
+      - "skills/**"
+      - "registry/schema.json"
+      - "registry/categories.json"
+      - "scripts/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: registry
+  cancel-in-progress: false
+
+jobs:
+  registry:
+    runs-on: ubuntu-latest
+    env:
+      DISPATCH_TOKEN: ${{ secrets.SKILLS_WEB_DISPATCH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history for createdAt / updatedAt
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validate and generate registry
+        run: npm run registry
+
+      - name: Commit registry if changed
+        id: commit
+        run: |
+          if git diff --quiet -- registry/skills.json && ! git ls-files --others --exclude-standard | grep -qx registry/skills.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry/skills.json
+          git commit -m "chore(registry): regenerate skills.json [skip ci]"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Notify skills-web to rebuild
+        if: steps.commit.outputs.changed == 'true' && env.DISPATCH_TOKEN != ''
+        env:
+          GH_TOKEN: ${{ env.DISPATCH_TOKEN }}
+        run: gh api repos/velonx/skills-web/dispatches -f event_type=registry-updated
