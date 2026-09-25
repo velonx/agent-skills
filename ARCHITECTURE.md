@@ -127,10 +127,10 @@ Full contributor instructions: [CONTRIBUTING.md](CONTRIBUTING.md).
 | 2 | Validation (+ tests, PR workflow) | ✅ |
 | 3 | Registry generation (+ `main` workflow, dispatch hook) | ✅ |
 | 4 | `skills-web`: Next.js + TypeScript + Tailwind, design system, home | ✅ |
-| 5 | Skills list, detail pages, categories, search | next |
-| 6 | Connect website to registry | |
-| 7 | GitHub links: "View on GitHub", "Edit this skill" | |
-| 8 | Contribution UX: submit page → GitHub new-file/PR flow | |
+| 5 | Skills list, detail pages, categories, search | ✅ |
+| 6 | Connect website to registry | ✅ (build-time fetch; done with 4–5) |
+| 7 | GitHub links: "View on GitHub", "Edit this skill" | ✅ (on every skill page) |
+| 8 | Contribution UX: submit page → GitHub new-file/PR flow | next |
 | 9 | Automatic rebuilds (dispatch receiver + daily fallback) | |
 | 10 | Deploy to skills.velonx.com | |
 
