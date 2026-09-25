@@ -6,8 +6,7 @@ In short: be welcoming, be kind, give and take feedback gracefully, and focus on
 
 ## Reporting
 
-<!-- TODO(maintainers): add a private contact address before launch. -->
-Report unacceptable behaviour privately to the maintainers at **[contact address to be added]**. All reports are reviewed promptly and kept confidential.
+Report unacceptable behaviour privately to the maintainers at rishi@velonx.in . All reports are reviewed promptly and kept confidential.
 
 ## Enforcement
 
