@@ -130,8 +130,8 @@ Full contributor instructions: [CONTRIBUTING.md](CONTRIBUTING.md).
 | 5 | Skills list, detail pages, categories, search | ✅ |
 | 6 | Connect website to registry | ✅ (build-time fetch; done with 4–5) |
 | 7 | GitHub links: "View on GitHub", "Edit this skill" | ✅ (on every skill page) |
-| 8 | Contribution UX: submit page → GitHub new-file/PR flow | next |
-| 9 | Automatic rebuilds (dispatch receiver + daily fallback) | |
+| 8 | Contribution UX: submit page → GitHub new-file/PR flow | ✅ (skills.velonx.com/submit) |
+| 9 | Automatic rebuilds (dispatch receiver + daily fallback) | next |
 | 10 | Deploy to skills.velonx.com | |
 
 ## Security model
