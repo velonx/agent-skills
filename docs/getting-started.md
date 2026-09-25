@@ -2,7 +2,7 @@
 
 ## 1. Find a skill
 
-Browse [skills.velonx.com](https://skills.velonx.com), the [`skills/`](../skills) folder, or [registry/skills.json](../registry/skills.json). Before installing, read the skill's `SKILL.md` — it's exactly what your agent will read.
+Browse [aiskills.velonx.in](https://aiskills.velonx.in), the [`skills/`](../skills) folder, or [registry/skills.json](../registry/skills.json). Before installing, read the skill's `SKILL.md` — it's exactly what your agent will read.
 
 ## 2. Install it
 

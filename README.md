@@ -2,7 +2,7 @@
 
 **Open-source skills for AI agents.**
 
-Velonx Skills is an open-source registry of reusable AI agent skills. This repository is the source of truth: every skill lives here as a plain `SKILL.md` file. The website, [skills.velonx.com](https://skills.velonx.com), is a discoverable interface over this repository.
+Velonx Skills is an open-source registry of reusable AI agent skills. This repository is the source of truth: every skill lives here as a plain `SKILL.md` file. The website, [aiskills.velonx.in](https://aiskills.velonx.in), is a discoverable interface over this repository.
 
 [![Validate skills](https://github.com/velonx/agent-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/velonx/agent-skills/actions/workflows/validate.yml)
 ![License: MIT](https://img.shields.io/badge/license-MIT-4d6947)
@@ -70,7 +70,7 @@ Walkthrough: [docs/creating-a-skill.md](docs/creating-a-skill.md) · Rules: [SPE
 ## How the registry works
 
 ```text
-skills/*/SKILL.md → npm run validate → npm run registry → registry/skills.json → skills.velonx.com
+skills/*/SKILL.md → npm run validate → npm run registry → registry/skills.json → aiskills.velonx.in
 ```
 
 - Every PR that touches `skills/**` is validated by GitHub Actions: schema, structure, Markdown, links, duplicates and safety patterns.

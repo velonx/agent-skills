@@ -15,7 +15,7 @@ Velonx Skills is two repositories in the [Velonx](https://github.com/velonx) Git
               └──── registry/skills.json ───────┘
                                                 │
                                                 ▼
-                                       skills.velonx.com
+                                       aiskills.velonx.in
 ```
 
 **The rule:** GitHub → registry → website. Never the other way round. `agent-skills` is useful on its own — clone it and you have every skill, the spec, and the tooling. The website adds discovery, nothing more.
@@ -75,7 +75,7 @@ skills/<name>/SKILL.md ──► validate ──► build-registry ──► reg
       skills-web (build time) ◄── raw.githubusercontent.com ◄───┘
              │   + SKILL.md bodies (by `path`) for detail pages
              ▼
-   static HTML per skill/category ──► skills.velonx.com
+   static HTML per skill/category ──► aiskills.velonx.in
 ```
 
 `registry/skills.json` holds everything list and search views need: name, title, description, version, author, license, category, tags, platforms, requirements, dates, `path` and `files`. Detail pages also fetch the skill's `SKILL.md` via `path` and render it. The registry has a top-level `"version": 1`; breaking changes to its shape bump that number.
@@ -96,7 +96,7 @@ Full contributor instructions: [CONTRIBUTING.md](CONTRIBUTING.md).
 ## E. Deployment flow
 
 - **agent-skills** isn't deployed. Its output is `registry/skills.json` on `main`.
-- **skills-web** deploys to Vercel (or any static-capable host). Pull requests get preview deployments; `main` is production at `skills.velonx.com` (CNAME `skills` → the host).
+- **skills-web** deploys to Vercel (or any static-capable host). Pull requests get preview deployments; `main` is production at `aiskills.velonx.in` (CNAME `skills` → the host).
 - The site fetches the registry **at build time only**. No GitHub token reaches the browser; if one is needed for rate limits it stays in a server-side env var (never `NEXT_PUBLIC_*`).
 
 ## F. GitHub → website sync
@@ -111,7 +111,7 @@ skills-web rebuild.yml ◄── hourly check: has agent-skills/main moved? ◄�
 1. A merge to `agent-skills/main` touching `skills/**` runs `registry.yml`. It validates, regenerates `skills.json`, and commits it as `github-actions[bot]` with `[skip ci]` if it changed.
 2. It then sends `repository_dispatch` (`registry-updated`, payload `{sha}`) to `velonx/skills-web` — on **every** run, not only when `skills.json` changed, because editing a `SKILL.md` body changes its page without changing the registry file. Needs the `SKILLS_WEB_DISPATCH_TOKEN` secret (below); without it the step is skipped.
 3. `skills-web/.github/workflows/rebuild.yml` runs on that event, on a manual trigger, and **hourly** as a fallback. The hourly run only rebuilds when `agent-skills/main` has moved since the last rebuild (tracked with an Actions cache key per commit), so it costs a few seconds when nothing changed.
-4. The rebuild pulls every registry file from **one** agent-skills commit into `.registry/` (`scripts/pull-registry.mjs`), runs tests and a full build as a gate, then calls the host's deploy hook (`DEPLOY_HOOK_URL` secret). A registry that breaks the build never reaches production.
+4. The rebuild pulls every registry file from **one** agent-skills commit into `.registry/` (`scripts/pull-registry.mjs`), runs tests and a full build as a gate, then calls the host's deploy hook (`VERCEL_DEPLOY_HOOK_URL` secret). A registry that breaks the build never reaches production.
 
 **Why pull files instead of fetching during the build?** Next.js stores `fetch` results in `.next/cache`, which hosts keep between builds, so a rebuild could silently serve the old registry. Pulling into `.registry/` first also pins a build to a single commit and shows it in the site footer (`registry @ abc1234`).
 
@@ -124,7 +124,7 @@ skills-web rebuild.yml ◄── hourly check: has agent-skills/main moved? ◄�
 | Secret | Where | What |
 |---|---|---|
 | `SKILLS_WEB_DISPATCH_TOKEN` | `agent-skills` → Settings → Secrets → Actions | Fine-grained token, resource owner **velonx**, repository **skills-web** only, permission **Contents: Read and write**. Optional: without it, updates arrive within the hour. |
-| `DEPLOY_HOOK_URL` | `skills-web` → Settings → Secrets → Actions | The host's deploy hook (Phase 10). Without it, rebuilds verify the build but don't deploy. |
+| `VERCEL_DEPLOY_HOOK_URL` | `skills-web` → Settings → Secrets → Actions | The host's deploy hook (Phase 10). Without it, rebuilds verify the build but don't deploy. |
 
 > If branch protection is enabled on `agent-skills/main`, allow `github-actions[bot]` to push, or switch step 1 to open an automated PR instead.
 
@@ -147,9 +147,9 @@ skills-web rebuild.yml ◄── hourly check: has agent-skills/main moved? ◄�
 | 5 | Skills list, detail pages, categories, search | ✅ |
 | 6 | Connect website to registry | ✅ (build-time fetch; done with 4–5) |
 | 7 | GitHub links: "View on GitHub", "Edit this skill" | ✅ (on every skill page) |
-| 8 | Contribution UX: submit page → GitHub new-file/PR flow | ✅ (skills.velonx.com/submit) |
+| 8 | Contribution UX: submit page → GitHub new-file/PR flow | ✅ (aiskills.velonx.in/submit) |
 | 9 | Automatic rebuilds (dispatch receiver + hourly fallback) | ✅ |
-| 10 | Deploy to skills.velonx.com | next |
+| 10 | Deploy to aiskills.velonx.in | next |
 
 ## Security model
 

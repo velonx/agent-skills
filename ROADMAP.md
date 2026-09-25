@@ -10,7 +10,7 @@
 - [ ] Skill pages generated from `SKILL.md`, with installation guides per platform
 - [ ] "View on GitHub" and "Edit this skill" links
 - [ ] Automatic website rebuild on registry change
-- [ ] Live at skills.velonx.com
+- [ ] Live at aiskills.velonx.in
 
 ## V2 — tools
 

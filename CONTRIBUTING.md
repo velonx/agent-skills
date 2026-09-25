@@ -15,12 +15,12 @@ Thanks for helping build Velonx Skills. Everything happens on GitHub — there's
 ```text
 Fork → branch → add skills/<name>/SKILL.md → npm run validate → PR
      → CI validates → maintainer review → merge
-     → registry regenerated automatically → live on skills.velonx.com
+     → registry regenerated automatically → live on aiskills.velonx.in
 ```
 
 ## Quickest way: the web form
 
-[skills.velonx.com/submit](https://skills.velonx.com/submit) builds a valid `SKILL.md` from a short form, checks it against the same schema as CI, and opens GitHub with the file pre-filled. GitHub forks the repo and opens a pull request for you. You can finish the instructions in GitHub's editor.
+[aiskills.velonx.in/submit](https://aiskills.velonx.in/submit) builds a valid `SKILL.md` from a short form, checks it against the same schema as CI, and opens GitHub with the file pre-filled. GitHub forks the repo and opens a pull request for you. You can finish the instructions in GitHub's editor.
 
 Prefer git? Follow the steps below.
 
