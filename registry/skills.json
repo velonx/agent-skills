@@ -213,6 +213,54 @@
       ]
     },
     {
+      "name": "fullstack-dev-team",
+      "title": "Fullstack Dev Team",
+      "description": "Act as a complete senior dev team — PM, architect, UI/UX designer, frontend + backend engineers, security engineer, QA, DevOps, and tech writer — to turn any pasted idea or half-built solution into a shipped, production-grade website or app. Trigger this skill whenever the user shares something they want built or coded, says 'build this', 'code this', 'make me a website / app / SaaS / MVP / dashboard / landing page', 'here's my idea', or pastes code needing completion, debugging, review, refactoring, testing, securing, or deployment. Also trigger for single-discipline asks — 'which stack should I use', 'fix this bug', 'review my code', 'add tests', 'deploy this', 'set up CI/CD', 'write the README', 'make my repo portfolio-ready', or git questions. Always interrogates requirements before coding, picks the stack with reasoning, never hallucinates packages or APIs (verifies everything), and enforces code quality, security, testing, git discipline, and docs on every deliverable.",
+      "version": "1.0.0",
+      "author": "Rishi Pandey",
+      "license": "MIT",
+      "category": "development",
+      "tags": [
+        "fullstack",
+        "web-development",
+        "architecture",
+        "security",
+        "testing",
+        "devops",
+        "code-review"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "filesystem",
+        "code-execution",
+        "shell",
+        "git"
+      ],
+      "icon": "code",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/fullstack-dev-team/SKILL.md",
+      "files": [
+        "SKILL.md",
+        "references/debugging.md",
+        "references/devops-deploy.md",
+        "references/git-workflow.md",
+        "references/repo-and-docs.md",
+        "references/security.md",
+        "references/stack-selection.md",
+        "references/testing.md",
+        "references/uiux.md"
+      ]
+    },
+    {
       "name": "github-integration",
       "title": "GitHub Integration",
       "description": "Work with GitHub through the gh CLI - read and triage issues, summarise pull requests, check CI status, and draft issues or PR descriptions. Use when the user mentions GitHub issues, PRs, CI checks, releases, or asks for a repository activity summary.",
