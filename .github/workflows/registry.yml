@@ -52,8 +52,16 @@ jobs:
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
+      # Always notify, not only when skills.json changed: an edit to a SKILL.md body changes its page
+      # even when the registry file doesn't. skills-web builds from agent-skills/main.
       - name: Notify skills-web to rebuild
-        if: steps.commit.outputs.changed == 'true' && env.DISPATCH_TOKEN != ''
+        if: env.DISPATCH_TOKEN != ''
         env:
           GH_TOKEN: ${{ env.DISPATCH_TOKEN }}
-        run: gh api repos/velonx/skills-web/dispatches -f event_type=registry-updated
+        run: gh api repos/velonx/skills-web/dispatches -f event_type=registry-updated -f "client_payload[sha]=$(git rev-parse HEAD)"
+
+      - name: Summary
+        run: |
+          if [ -z "$DISPATCH_TOKEN" ]; then
+            echo "No SKILLS_WEB_DISPATCH_TOKEN secret — skills-web will pick this up on its hourly check." >> "$GITHUB_STEP_SUMMARY"
+          fi

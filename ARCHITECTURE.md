@@ -101,17 +101,34 @@ Full contributor instructions: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## F. GitHub → website sync
 
-1. A merge to `agent-skills/main` touching `skills/**` runs `registry.yml`.
-2. It regenerates `skills.json`. If the file changed, it commits it as `github-actions[bot]` with `[skip ci]`.
-3. It then sends `repository_dispatch` (`event_type: registry-updated`) to `velonx/skills-web`, using the `SKILLS_WEB_DISPATCH_TOKEN` secret (fine-grained token, **Contents: read & write** on `skills-web` only). If the secret isn't set, this step is skipped.
-4. `skills-web` listens for `registry-updated` and triggers a production deploy (e.g. a Vercel deploy hook stored as a secret there).
-5. **Fallback:** `skills-web` also rebuilds on a daily schedule, so a missed dispatch self-heals within 24h.
+```text
+merge to agent-skills/main ─► registry.yml ─► commit skills.json (if changed)
+                                         └──► repository_dispatch "registry-updated" ─┐
+skills-web rebuild.yml ◄── hourly check: has agent-skills/main moved? ◄───────────────┤ (fallback)
+   └─ pull registry @ that exact commit ─► test ─► build ─► deploy hook ─► live       │
+```
 
-**No loops:** pushes made with `GITHUB_TOKEN` never trigger workflows; `registry.yml` ignores `registry/skills.json` in its path filter; and the commit message carries `[skip ci]`.
+1. A merge to `agent-skills/main` touching `skills/**` runs `registry.yml`. It validates, regenerates `skills.json`, and commits it as `github-actions[bot]` with `[skip ci]` if it changed.
+2. It then sends `repository_dispatch` (`registry-updated`, payload `{sha}`) to `velonx/skills-web` — on **every** run, not only when `skills.json` changed, because editing a `SKILL.md` body changes its page without changing the registry file. Needs the `SKILLS_WEB_DISPATCH_TOKEN` secret (below); without it the step is skipped.
+3. `skills-web/.github/workflows/rebuild.yml` runs on that event, on a manual trigger, and **hourly** as a fallback. The hourly run only rebuilds when `agent-skills/main` has moved since the last rebuild (tracked with an Actions cache key per commit), so it costs a few seconds when nothing changed.
+4. The rebuild pulls every registry file from **one** agent-skills commit into `.registry/` (`scripts/pull-registry.mjs`), runs tests and a full build as a gate, then calls the host's deploy hook (`DEPLOY_HOOK_URL` secret). A registry that breaks the build never reaches production.
 
-**Replaceable:** the website only depends on "a URL that serves `skills.json`". Swapping dispatch for a webhook, cron-only, or a registry API later doesn't touch the skills repo.
+**Why pull files instead of fetching during the build?** Next.js stores `fetch` results in `.next/cache`, which hosts keep between builds, so a rebuild could silently serve the old registry. Pulling into `.registry/` first also pins a build to a single commit and shows it in the site footer (`registry @ abc1234`).
 
-> If branch protection is enabled on `main`, allow `github-actions[bot]` to push, or switch step 2 to open an automated PR instead.
+**No loops:** pushes made with `GITHUB_TOKEN` never trigger workflows; `registry.yml` ignores `registry/skills.json` in its path filter; the commit message carries `[skip ci]`; and `skills-web` never writes to `agent-skills`.
+
+**Replaceable:** the website only needs "the agent-skills files at some commit". Dispatch can be swapped for a webhook, cron-only, or a registry API without touching the skills repo.
+
+**Secrets to set up**
+
+| Secret | Where | What |
+|---|---|---|
+| `SKILLS_WEB_DISPATCH_TOKEN` | `agent-skills` → Settings → Secrets → Actions | Fine-grained token, resource owner **velonx**, repository **skills-web** only, permission **Contents: Read and write**. Optional: without it, updates arrive within the hour. |
+| `DEPLOY_HOOK_URL` | `skills-web` → Settings → Secrets → Actions | The host's deploy hook (Phase 10). Without it, rebuilds verify the build but don't deploy. |
+
+> If branch protection is enabled on `agent-skills/main`, allow `github-actions[bot]` to push, or switch step 1 to open an automated PR instead.
+
+> GitHub pauses scheduled workflows in repositories with no activity for 60 days. The dispatch path is unaffected; re-enable the schedule from the Actions tab if needed.
 
 ## G. Skill schema
 
@@ -131,8 +148,8 @@ Full contributor instructions: [CONTRIBUTING.md](CONTRIBUTING.md).
 | 6 | Connect website to registry | ✅ (build-time fetch; done with 4–5) |
 | 7 | GitHub links: "View on GitHub", "Edit this skill" | ✅ (on every skill page) |
 | 8 | Contribution UX: submit page → GitHub new-file/PR flow | ✅ (skills.velonx.com/submit) |
-| 9 | Automatic rebuilds (dispatch receiver + daily fallback) | next |
-| 10 | Deploy to skills.velonx.com | |
+| 9 | Automatic rebuilds (dispatch receiver + hourly fallback) | ✅ |
+| 10 | Deploy to skills.velonx.com | next |
 
 ## Security model
 
