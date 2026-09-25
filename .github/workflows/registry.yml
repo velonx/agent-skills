@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DISPATCH_TOKEN: ${{ secrets.SKILLS_WEB_DISPATCH_TOKEN }}
+      DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -60,8 +61,14 @@ jobs:
           GH_TOKEN: ${{ env.DISPATCH_TOKEN }}
         run: gh api repos/velonx/skills-web/dispatches -f event_type=registry-updated -f "client_payload[sha]=$(git rev-parse HEAD)"
 
+      # Redeploy the site on Vercel; its build pulls agent-skills/main. A failed build keeps the old site live.
+      - name: Redeploy website
+        if: env.DEPLOY_HOOK != ''
+        run: curl -fsS -X POST "$DEPLOY_HOOK" -o /dev/null
+
       - name: Summary
         run: |
-          if [ -z "$DISPATCH_TOKEN" ]; then
-            echo "No SKILLS_WEB_DISPATCH_TOKEN secret — skills-web will pick this up on its hourly check." >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "$DEPLOY_HOOK" ]; then echo "Vercel deploy hook called." >> "$GITHUB_STEP_SUMMARY"; fi
+          if [ -z "$DISPATCH_TOKEN" ] && [ -z "$DEPLOY_HOOK" ]; then
+            echo "No VERCEL_DEPLOY_HOOK_URL or SKILLS_WEB_DISPATCH_TOKEN secret — skills-web will pick this up on its hourly check." >> "$GITHUB_STEP_SUMMARY"
           fi

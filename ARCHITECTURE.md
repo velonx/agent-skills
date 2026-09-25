@@ -108,7 +108,7 @@ skills-web rebuild.yml ◄── hourly check: has agent-skills/main moved? ◄�
    └─ pull registry @ that exact commit ─► test ─► build ─► deploy hook ─► live       │
 ```
 
-1. A merge to `agent-skills/main` touching `skills/**` runs `registry.yml`. It validates, regenerates `skills.json`, and commits it as `github-actions[bot]` with `[skip ci]` if it changed.
+1. A merge to `agent-skills/main` touching `skills/**` runs `registry.yml`. It validates, regenerates `skills.json`, commits it as `github-actions[bot]` with `[skip ci]` if it changed, then calls the Vercel deploy hook (`VERCEL_DEPLOY_HOOK_URL`). Vercel's build pulls `agent-skills/main`; if it fails, the old site stays live.
 2. It then sends `repository_dispatch` (`registry-updated`, payload `{sha}`) to `velonx/skills-web` — on **every** run, not only when `skills.json` changed, because editing a `SKILL.md` body changes its page without changing the registry file. Needs the `SKILLS_WEB_DISPATCH_TOKEN` secret (below); without it the step is skipped.
 3. `skills-web/.github/workflows/rebuild.yml` runs on that event, on a manual trigger, and **hourly** as a fallback. The hourly run only rebuilds when `agent-skills/main` has moved since the last rebuild (tracked with an Actions cache key per commit), so it costs a few seconds when nothing changed.
 4. The rebuild pulls every registry file from **one** agent-skills commit into `.registry/` (`scripts/pull-registry.mjs`), runs tests and a full build as a gate, then calls the host's deploy hook (`VERCEL_DEPLOY_HOOK_URL` secret). A registry that breaks the build never reaches production.
@@ -124,7 +124,7 @@ skills-web rebuild.yml ◄── hourly check: has agent-skills/main moved? ◄�
 | Secret | Where | What |
 |---|---|---|
 | `SKILLS_WEB_DISPATCH_TOKEN` | `agent-skills` → Settings → Secrets → Actions | Fine-grained token, resource owner **velonx**, repository **skills-web** only, permission **Contents: Read and write**. Optional: without it, updates arrive within the hour. |
-| `VERCEL_DEPLOY_HOOK_URL` | `skills-web` → Settings → Secrets → Actions | The host's deploy hook (Phase 10). Without it, rebuilds verify the build but don't deploy. |
+| `VERCEL_DEPLOY_HOOK_URL` | `agent-skills` → Settings → Secrets → Actions | Vercel deploy hook. `registry.yml` calls it after every run, so a merge goes live in about a minute. Add it to `skills-web` too if you want the hourly fallback to deploy. |
 
 > If branch protection is enabled on `agent-skills/main`, allow `github-actions[bot]` to push, or switch step 1 to open an automated PR instead.
 
