@@ -371,6 +371,44 @@
       ]
     },
     {
+      "name": "research-paper",
+      "title": "Research Paper",
+      "description": "Write, structure, and typeset academic research papers — original research, surveys, literature reviews, case studies, or conference/journal submissions. Trigger this skill whenever the user wants to write a research paper, publish research, turn findings/data/a project into a paper, draft an abstract, do a literature review, format something in IEEE/ACM/Springer style, or says things like 'make a paper on X', 'convert my research into a paper', 'I want to publish this', or 'write my college research paper'. Produces a full IMRaD-structured paper with REAL verified citations and delivers it as Overleaf-ready IEEE LaTeX and/or an editable Word document. Use it even for vague asks like 'help me publish something'.",
+      "version": "1.0.0",
+      "author": "Rishi Pandey",
+      "license": "MIT",
+      "category": "writing",
+      "tags": [
+        "research-paper",
+        "academic-writing",
+        "literature-review",
+        "citations",
+        "latex",
+        "ieee"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "web-access",
+        "filesystem",
+        "code-execution"
+      ],
+      "icon": "doc",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-09-25",
+      "updatedAt": "2026-09-25",
+      "path": "skills/research-paper/SKILL.md",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
       "name": "sql-analysis",
       "title": "SQL Analysis",
       "description": "Explore a database schema, write safe read-only SQL to answer business questions, and explain the results and the query. Use when the user asks a question about data that lives in a SQL database, wants a query written or debugged, or needs a metric defined in SQL.",
