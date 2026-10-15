@@ -35,7 +35,7 @@ Good agent workflows get rewritten from scratch in every team. A shared, reviewe
 | [competitive-analysis](skills/competitive-analysis) | Research | Competitor matrix and positioning gaps |
 | [code-review](skills/code-review) | Development | Prioritised, actionable PR review |
 | [code-documentation](skills/code-documentation) | Development | Accurate docstrings and READMEs |
-| [codebase-audit](skills/codebase-audit) | Development | Scored audit of quality, security, efficiency, accessibility and tests |
+| [ui-ux-design](skills/ui-ux-design) | Development | UI design, UX audits and accessible design systems |
 | [github-integration](skills/github-integration) | DevOps | Issues, PRs and CI through `gh` |
 | [pdf-analysis](skills/pdf-analysis) | Documents | Text, tables and fields from PDFs |
 | [data-analysis](skills/data-analysis) | Data & Analytics | Clean, analyse, chart tabular data |

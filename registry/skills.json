@@ -443,6 +443,44 @@
       ]
     },
     {
+      "name": "ui-ux-design",
+      "title": "UI/UX Design",
+      "description": "Design, critique and improve user interfaces and user experience — user flows, wireframes, visual direction, design tokens, component states, accessibility and usability audits — and hand off specs or production-ready UI code. Use when the user asks to design a screen, page, app or dashboard, review or fix a UI, improve UX or conversion, make something look less generic or more professional, build a design system, or check accessibility. Not for backend or pure business-logic work.",
+      "version": "1.0.0",
+      "author": "Rishi Pandey",
+      "license": "MIT",
+      "category": "development",
+      "tags": [
+        "ui-design",
+        "ux-design",
+        "accessibility",
+        "design-system",
+        "usability",
+        "frontend"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [],
+      "icon": "spark",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-10-15",
+      "updatedAt": "2026-10-15",
+      "path": "skills/ui-ux-design/SKILL.md",
+      "files": [
+        "SKILL.md",
+        "examples/audit-output.md",
+        "reference/accessibility.md",
+        "reference/design-tokens.md",
+        "reference/ux-heuristics.md"
+      ]
+    },
+    {
       "name": "web-research",
       "title": "Web Research",
       "description": "Research a question across several independent, reliable web sources and return a sourced answer with confidence notes. Use when the user asks to look into a topic, verify a claim, compare viewpoints, or needs citations - not for a single quick fact (use web-search for that).",

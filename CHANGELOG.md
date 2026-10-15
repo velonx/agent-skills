@@ -7,7 +7,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). This project u
 ## [Unreleased]
 
 ### Added
-- `codebase-audit` skill: whole-repository audit scoring code quality, security, efficiency, accessibility and testing.
+- `ui-ux-design` skill: flow-first UI design, design tokens, component states, accessibility and UX audits.
 
 ## [0.1.0] — 2026-09-25
 
