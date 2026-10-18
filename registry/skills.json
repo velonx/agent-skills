@@ -106,6 +106,49 @@
       ]
     },
     {
+      "name": "codebase-audit",
+      "title": "Codebase Audit",
+      "description": "Audit a whole codebase across five dimensions — code quality, security, efficiency, accessibility and testing — and return a scored report with prioritised, file-referenced findings and a fix plan. Use when the user asks to audit, health-check or assess a repository or project, asks \"how good is this codebase\", wants a pre-launch, handover or due-diligence review, or wants to know what to fix first. For reviewing a single diff or pull request, use a code-review skill instead.",
+      "version": "1.0.0",
+      "author": "Rishi Pandey",
+      "license": "MIT",
+      "category": "development",
+      "tags": [
+        "audit",
+        "code-quality",
+        "security",
+        "performance",
+        "accessibility",
+        "testing"
+      ],
+      "platforms": [
+        "generic",
+        "claude",
+        "openai",
+        "gemini",
+        "cursor"
+      ],
+      "requirements": [
+        "filesystem",
+        "shell"
+      ],
+      "dependencies": [
+        "code-review"
+      ],
+      "icon": "code",
+      "featured": false,
+      "deprecated": false,
+      "createdAt": "2026-10-18",
+      "updatedAt": "2026-10-18",
+      "path": "skills/codebase-audit/SKILL.md",
+      "files": [
+        "SKILL.md",
+        "examples/audit-report.md",
+        "reference/checklists.md",
+        "reference/scoring.md"
+      ]
+    },
+    {
       "name": "competitive-analysis",
       "title": "Competitive Analysis",
       "description": "Compare specific competitors on features, pricing, positioning, strengths and weaknesses using their public materials, and turn that into a comparison matrix and positioning gaps. Use when the user names competitors, asks who competes with a product, or wants to know how to differentiate.",
